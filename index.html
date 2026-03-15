@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BUMBO.,JSC – Công ty Cổ phần Sản xuất và Thương mại BUMBO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #c0392b;
+      --red-dk: #922b21;
+      --red-lt: #f5b7b1;
+      --gold:   #d4ac0d;
+      --dark:   #1a1a1a;
+      --gray:   #6b7280;
+      --light:  #fdf6f0;
+      --white:  #ffffff;
+      --radius: 16px;
+      --shadow: 0 8px 32px rgba(0,0,0,.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #f0e0e0;
+    }
+    .nav-inner {
+      max-width: 1180px; margin: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 46px; height: 46px; border-radius: 10px;
+      background: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-icon svg { width: 28px; height: 28px; }
+    .logo-text { line-height: 1.2; }
+    .logo-text strong { display: block; font-size: 1.15rem; color: var(--red); font-weight: 800; letter-spacing: .5px; }
+    .logo-text span   { font-size: .7rem; color: var(--gray); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: .92rem; font-weight: 500; color: var(--dark); transition: color .2s; }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--red); color: #fff;
+      padding: 9px 22px; border-radius: 50px;
+      text-decoration: none; font-size: .88rem; font-weight: 600;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--red-dk); transform: translateY(-1px); }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #fff5f5 0%, #fff 55%, #fef9ec 100%);
+      padding: 80px 24px 60px;
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1180px; margin: auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fdecea; color: var(--red);
+      padding: 6px 14px; border-radius: 50px; font-size: .8rem; font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .hero-badge span { width: 8px; height: 8px; background: var(--red); border-radius: 50%; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.3} }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.2;
+      color: var(--dark); margin-bottom: 18px;
+    }
+    .hero h1 em { color: var(--red); font-style: normal; }
+    .hero p { font-size: 1.05rem; color: var(--gray); margin-bottom: 36px; max-width: 480px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: #fff;
+      padding: 13px 30px; border-radius: 50px; font-weight: 700; font-size: .95rem;
+      text-decoration: none; transition: background .2s, transform .15s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-dk); transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid var(--red); color: var(--red);
+      padding: 11px 28px; border-radius: 50px; font-weight: 700; font-size: .95rem;
+      text-decoration: none; transition: all .2s; display: inline-block;
+    }
+    .btn-outline:hover { background: var(--red); color: #fff; }
+    .hero-visual { position: relative; }
+    .hero-img-wrap {
+      border-radius: 24px; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(192,57,43,.18);
+      aspect-ratio: 4/3;
+    }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-stat {
+      position: absolute; bottom: -16px; left: -20px;
+      background: #fff; border-radius: 16px; padding: 16px 20px;
+      box-shadow: var(--shadow); display: flex; align-items: center; gap: 12px;
+    }
+    .hero-stat-icon { width: 44px; height: 44px; border-radius: 12px; background: #fdecea; display: flex; align-items: center; justify-content: center; }
+    .hero-stat strong { display: block; font-size: 1.3rem; color: var(--red); font-weight: 800; }
+    .hero-stat small { font-size: .75rem; color: var(--gray); }
+
+    /* ── SECTION COMMON ───────────────────────────── */
+    section { padding: 80px 24px; }
+    .section-title { text-align: center; margin-bottom: 48px; }
+    .section-title h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--dark); margin-bottom: 10px; }
+    .section-title p { color: var(--gray); font-size: 1rem; max-width: 560px; margin: auto; }
+    .tag {
+      display: inline-block; background: #fdecea; color: var(--red);
+      padding: 4px 14px; border-radius: 50px; font-size: .78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+    }
+
+    /* ── STATS BAR ────────────────────────────────── */
+    .stats { background: var(--red); padding: 40px 24px; }
+    .stats-inner {
+      max-width: 1180px; margin: auto;
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; text-align: center;
+    }
+    .stat-item { color: #fff; }
+    .stat-item strong { display: block; font-size: 2rem; font-weight: 800; }
+    .stat-item span { font-size: .85rem; opacity: .85; }
+
+    /* ── ABOUT ────────────────────────────────────── */
+    .about { background: var(--light); }
+    .about-inner {
+      max-width: 1180px; margin: auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .about-img-wrap {
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); aspect-ratio: 5/4;
+    }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .about-content .tag { margin-bottom: 14px; }
+    .about-content h2 { font-size: clamp(1.5rem,3vw,2rem); font-weight: 800; margin-bottom: 16px; }
+    .about-content p { color: var(--gray); margin-bottom: 14px; }
+    .about-list { list-style: none; margin-top: 20px; }
+    .about-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid #f0e0e0; font-size: .94rem;
+    }
+    .about-list li:last-child { border: none; }
+    .about-list li .icon { color: var(--red); font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── PRODUCTS ─────────────────────────────────── */
+    .products { background: #fff; }
+    .products-inner { max-width: 1180px; margin: auto; }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 28px;
+    }
+    .product-card {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid #f5e0e0;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .product-img {
+      height: 200px; overflow: hidden; background: var(--light);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .product-card:hover .product-img img { transform: scale(1.06); }
+    .product-img svg { width: 80px; height: 80px; opacity: .4; }
+    .product-body { padding: 20px; }
+    .product-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .product-body p { font-size: .88rem; color: var(--gray); }
+
+    /* ── PROCESS ──────────────────────────────────── */
+    .process { background: var(--light); }
+    .process-inner { max-width: 900px; margin: auto; }
+    .process-steps { display: grid; gap: 20px; }
+    .step {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: #fff; border-radius: var(--radius); padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06); transition: box-shadow .2s;
+    }
+    .step:hover { box-shadow: 0 6px 24px rgba(192,57,43,.12); }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--red); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .step-text h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .step-text p { font-size: .88rem; color: var(--gray); }
+
+    /* ── WHY US ───────────────────────────────────── */
+    .why { background: #fff; }
+    .why-inner { max-width: 1180px; margin: auto; }
+    .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .why-card {
+      text-align: center; padding: 36px 24px; border-radius: var(--radius);
+      border: 1px solid #f5e0e0; transition: all .25s;
+    }
+    .why-card:hover { border-color: var(--red); box-shadow: 0 8px 24px rgba(192,57,43,.1); }
+    .why-icon {
+      width: 64px; height: 64px; border-radius: 18px;
+      background: #fdecea; margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-icon svg { width: 32px; height: 32px; }
+    .why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .why-card p { font-size: .87rem; color: var(--gray); }
+
+    /* ── CONTACT ──────────────────────────────────── */
+    .contact { background: linear-gradient(135deg, #922b21 0%, #c0392b 100%); padding: 80px 24px; }
+    .contact-inner {
+      max-width: 1180px; margin: auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+    }
+    .contact-info { color: #fff; }
+    .contact-info h2 { font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 800; margin-bottom: 12px; }
+    .contact-info p { opacity: .85; margin-bottom: 32px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px;
+    }
+    .contact-item-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-item-icon svg { width: 20px; height: 20px; }
+    .contact-item-text strong { display: block; font-weight: 600; font-size: .85rem; opacity: .7; margin-bottom: 2px; }
+    .contact-item-text a, .contact-item-text span { color: #fff; font-size: .97rem; font-weight: 500; text-decoration: none; }
+    .contact-item-text a:hover { text-decoration: underline; }
+    .contact-form { background: #fff; border-radius: 20px; padding: 36px; }
+    .contact-form h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; color: var(--dark); }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: .85rem; font-weight: 600; color: var(--gray); margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 11px 16px; border: 1.5px solid #e5e7eb; border-radius: 10px;
+      font-family: inherit; font-size: .93rem; color: var(--dark);
+      transition: border-color .2s; outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--red); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%; padding: 13px; background: var(--red); color: #fff;
+      border: none; border-radius: 10px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background .2s;
+    }
+    .form-submit:hover { background: var(--red-dk); }
+
+    /* ── MAP ──────────────────────────────────────── */
+    .map-section { padding: 0; }
+    .map-section iframe { width: 100%; height: 340px; border: none; display: block; filter: grayscale(15%); }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.75);
+      padding: 48px 24px 24px;
+    }
+    .footer-inner {
+      max-width: 1180px; margin: auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 32px;
+    }
+    .footer-brand .logo-text strong { color: #fff; }
+    .footer-brand p { font-size: .88rem; margin-top: 12px; line-height: 1.7; }
+    .footer-col h4 { color: #fff; font-size: .9rem; font-weight: 700; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { color: rgba(255,255,255,.65); text-decoration: none; font-size: .87rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--red-lt); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1); padding-top: 20px;
+      text-align: center; font-size: .82rem; color: rgba(255,255,255,.4);
+    }
+
+    /* ── MOBILE ───────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner, .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { order: -1; }
+      .hero-stat { left: 0; }
+      .products-grid, .why-grid { grid-template-columns: 1fr 1fr; }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 540px) {
+      .products-grid, .why-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+          <path d="M8 12s1-2 4-2 4 2 4 2"/>
+          <path d="M9 9h.01M15 9h.01"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <strong>BUMBO.,JSC</strong>
+        <span>Sản xuất &amp; Thương mại</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">Giới thiệu</a></li>
+      <li><a href="#products">Sản phẩm</a></li>
+      <li><a href="#process">Quy trình</a></li>
+      <li><a href="#why">Tại sao chọn chúng tôi</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+    <a href="tel:+84923610644" class="nav-cta">Gọi ngay</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge"><span></span> Đang hoạt động · Từ năm 2022</div>
+      <h1>Thực phẩm <em>sạch &amp; chất lượng</em> từ BUMBO</h1>
+      <p>Chuyên chế biến và bảo quản thịt cùng các sản phẩm từ thịt theo tiêu chuẩn an toàn vệ sinh thực phẩm, phục vụ thị trường Hà Nội và toàn quốc.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Liên hệ đặt hàng</a>
+        <a href="#products" class="btn-outline">Xem sản phẩm</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=900&q=80" alt="Sản phẩm thịt chế biến chất lượng cao" />
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <div>
+          <strong>100%</strong>
+          <small>Vệ sinh an toàn thực phẩm</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══════════════════════════════════════════════ -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <strong>3+</strong>
+      <span>Năm kinh nghiệm</span>
+    </div>
+    <div class="stat-item">
+      <strong>1.5 tỷ</strong>
+      <span>Vốn điều lệ (VNĐ)</span>
+    </div>
+    <div class="stat-item">
+      <strong>100%</strong>
+      <span>Sản phẩm đạt chuẩn</span>
+    </div>
+    <div class="stat-item">
+      <strong>24/7</strong>
+      <span>Hỗ trợ khách hàng</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══════════════════════════════════════════════ -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-img-wrap">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Nhà máy chế biến thực phẩm BUMBO" />
+    </div>
+    <div class="about-content">
+      <span class="tag">Về chúng tôi</span>
+      <h2>Công ty Cổ phần Sản xuất và Thương mại BUMBO</h2>
+      <p>Thành lập năm 2022 tại Hà Nội, BUMBO.,JSC chuyên sản xuất, chế biến và thương mại các sản phẩm thịt chất lượng cao. Chúng tôi cam kết mang đến sản phẩm an toàn, tươi ngon và giá trị dinh dưỡng cao nhất cho người tiêu dùng.</p>
+      <ul class="about-list">
+        <li>
+          <span class="icon">✦</span>
+          <span><strong>Mã số thuế:</strong> 0109909611</span>
+        </li>
+        <li>
+          <span class="icon">✦</span>
+          <span><strong>Tên quốc tế:</strong> BUMBO TRADING AND MANUFACTURING JOINT STOCK COMPANY</span>
+        </li>
+        <li>
+          <span class="icon">✦</span>
+          <span><strong>Người đại diện:</strong> Ông Cao Đức Tùng – Giám đốc</span>
+        </li>
+        <li>
+          <span class="icon">✦</span>
+          <span><strong>Địa chỉ:</strong> Số 114 Đường Bờ Sông, Thôn Thượng, Xã Bình Minh, TP Hà Nội</span>
+        </li>
+        <li>
+          <span class="icon">✦</span>
+          <span><strong>Ngành nghề chính:</strong> Chế biến, bảo quản thịt và các sản phẩm từ thịt</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRODUCTS ═══════════════════════════════════════════ -->
+<section class="products" id="products">
+  <div class="products-inner">
+    <div class="section-title">
+      <span class="tag">Sản phẩm</span>
+      <h2>Danh mục sản phẩm của chúng tôi</h2>
+      <p>Các sản phẩm thịt chế biến đạt tiêu chuẩn vệ sinh an toàn thực phẩm, đáp ứng nhu cầu đa dạng của khách hàng.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80" alt="Thịt heo tươi sạch" />
+        </div>
+        <div class="product-body">
+          <h3>Thịt heo tươi sạch</h3>
+          <p>Thịt heo được tuyển chọn kỹ lưỡng, đảm bảo tươi ngon, an toàn vệ sinh thực phẩm.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1551028150-64b9f398f678?w=600&q=80" alt="Thịt bò chọn lọc" />
+        </div>
+        <div class="product-body">
+          <h3>Thịt bò chọn lọc</h3>
+          <p>Thịt bò nhập khẩu và trong nước, đa dạng phần cắt phục vụ nhu cầu chế biến.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1615937657715-bc7b4b7962c1?w=600&q=80" alt="Sản phẩm chế biến sẵn" />
+        </div>
+        <div class="product-body">
+          <h3>Thịt chế biến sẵn</h3>
+          <p>Các sản phẩm giò, chả, nem, xúc xích đạt chứng nhận VSATTP.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?w=600&q=80" alt="Thịt gà sạch" />
+        </div>
+        <div class="product-body">
+          <h3>Thịt gia cầm</h3>
+          <p>Gà, vịt, ngan được chăn nuôi theo tiêu chuẩn sạch, không sử dụng chất tăng trọng.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?w=600&q=80" alt="Thực phẩm đông lạnh" />
+        </div>
+        <div class="product-body">
+          <h3>Thực phẩm đông lạnh</h3>
+          <p>Sản phẩm đông lạnh bảo quản theo công nghệ hiện đại, giữ nguyên dưỡng chất.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=600&q=80" alt="Thực phẩm đóng gói" />
+        </div>
+        <div class="product-body">
+          <h3>Thực phẩm đóng gói</h3>
+          <p>Sản phẩm đóng gói chân không, tiện dụng, phù hợp phân phối đại lý và siêu thị.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ════════════════════════════════════════════ -->
+<section class="process" id="process">
+  <div class="process-inner">
+    <div class="section-title">
+      <span class="tag">Quy trình</span>
+      <h2>Quy trình sản xuất &amp; kiểm soát chất lượng</h2>
+      <p>Mỗi sản phẩm đều trải qua quy trình khép kín, đảm bảo an toàn từ nguồn nguyên liệu đến tay người tiêu dùng.</p>
+    </div>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-text">
+          <h3>Tuyển chọn nguồn nguyên liệu</h3>
+          <p>Chọn lọc kỹ các nguồn cung ứng uy tín, đảm bảo vật nuôi khỏe mạnh, không dùng chất cấm và chất tăng trọng.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-text">
+          <h3>Giết mổ &amp; Sơ chế</h3>
+          <p>Thực hiện tại cơ sở đạt tiêu chuẩn vệ sinh thú y, có kiểm soát của cơ quan thú y tỉnh/thành phố.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-text">
+          <h3>Chế biến &amp; Bảo quản</h3>
+          <p>Áp dụng công nghệ chế biến hiện đại, bảo quản lạnh đúng chuẩn để duy trì chất lượng và hạn sử dụng.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-text">
+          <h3>Kiểm tra chất lượng</h3>
+          <p>Mỗi lô hàng được kiểm tra vi sinh, hóa chất và cảm quan trước khi xuất xưởng.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-text">
+          <h3>Đóng gói &amp; Phân phối</h3>
+          <p>Đóng gói theo tiêu chuẩn, vận chuyển bằng xe lạnh chuyên dụng đến tay khách hàng nhanh chóng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY US ══════════════════════════════════════════════ -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="section-title">
+      <span class="tag">Tại sao chọn chúng tôi</span>
+      <h2>Cam kết vượt trội từ BUMBO</h2>
+      <p>Chúng tôi không chỉ cung cấp sản phẩm mà còn mang đến sự tin tưởng lâu dài cho đối tác và khách hàng.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>An toàn vệ sinh thực phẩm</h3>
+        <p>Tất cả sản phẩm đều đạt chứng nhận vệ sinh an toàn thực phẩm theo quy định của Bộ Y tế và Bộ NN&PTNT.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>Giao hàng nhanh chóng</h3>
+        <p>Hệ thống vận chuyển lạnh chuyên nghiệp đảm bảo hàng hóa đến tay khách hàng đúng hẹn, đúng chất lượng.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <h3>Tận tâm với khách hàng</h3>
+        <p>Đội ngũ tư vấn và chăm sóc khách hàng nhiệt tình, sẵn sàng hỗ trợ 24/7 qua điện thoại và email.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <h3>Giá cạnh tranh</h3>
+        <p>Chính sách giá linh hoạt, chiết khấu hấp dẫn cho đại lý và khách hàng mua số lượng lớn.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13" rx="2"/>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <h3>Phân phối toàn quốc</h3>
+        <p>Mạng lưới phân phối rộng khắp, đáp ứng đơn hàng từ Hà Nội đến các tỉnh thành trên cả nước.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Đội ngũ chuyên nghiệp</h3>
+        <p>Nhân sự được đào tạo bài bản về an toàn thực phẩm, vận hành dây chuyền sản xuất hiện đại.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ════════════════════════════════════════════ -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <h2>Liên hệ với chúng tôi</h2>
+      <p>Hãy để lại thông tin, chúng tôi sẽ phản hồi trong vòng 24 giờ. Hoặc liên hệ trực tiếp qua số điện thoại và email bên dưới.</p>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <div class="contact-item-text">
+          <strong>Điện thoại</strong>
+          <a href="tel:+84923610644">+84 923 610 644</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="contact-item-text">
+          <strong>Email</strong>
+          <a href="mailto:tranha1981nd@gmail.com">tranha1981nd@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="contact-item-text">
+          <strong>Địa chỉ</strong>
+          <span>Số 114 Đường Bờ Sông, Thôn Thượng, Xã Bình Minh, TP Hà Nội</span>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <div class="contact-item-text">
+          <strong>Mã số thuế</strong>
+          <span>0109909611</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Gửi yêu cầu tư vấn</h3>
+      <div class="form-group">
+        <label>Họ và tên *</label>
+        <input type="text" placeholder="Nhập họ và tên của bạn" />
+      </div>
+      <div class="form-group">
+        <label>Số điện thoại *</label>
+        <input type="tel" placeholder="Nhập số điện thoại liên hệ" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="Nhập địa chỉ email" />
+      </div>
+      <div class="form-group">
+        <label>Sản phẩm quan tâm</label>
+        <select>
+          <option value="">-- Chọn sản phẩm --</option>
+          <option>Thịt heo tươi sạch</option>
+          <option>Thịt bò chọn lọc</option>
+          <option>Thịt chế biến sẵn</option>
+          <option>Thịt gia cầm</option>
+          <option>Thực phẩm đông lạnh</option>
+          <option>Thực phẩm đóng gói</option>
+          <option>Khác</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Nội dung</label>
+        <textarea placeholder="Mô tả nhu cầu của bạn..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm(this)">Gửi yêu cầu ngay</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MAP ════════════════════════════════════════════════ -->
+<div class="map-section">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3727.4!2d105.85!3d20.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDUzJzA4LjAiTiAxMDXCsDUxJzAwLjAiRQ!5e0!3m2!1svi!2s!4v1"
+    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+    title="Bản đồ BUMBO.,JSC – Số 114 Đường Bờ Sông, Xã Bình Minh, Hà Nội">
+  </iframe>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+            <path d="M8 12s1-2 4-2 4 2 4 2"/>
+            <path d="M9 9h.01M15 9h.01"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <strong>BUMBO.,JSC</strong>
+          <span>Sản xuất &amp; Thương mại</span>
+        </div>
+      </div>
+      <p>Chuyên chế biến và bảo quản thịt cùng các sản phẩm từ thịt theo tiêu chuẩn an toàn vệ sinh thực phẩm, phục vụ thị trường Hà Nội và toàn quốc kể từ năm 2022.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Liên kết nhanh</h4>
+      <ul>
+        <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#products">Sản phẩm</a></li>
+        <li><a href="#process">Quy trình</a></li>
+        <li><a href="#why">Tại sao chọn chúng tôi</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Thông tin liên hệ</h4>
+      <ul>
+        <li><a href="tel:+84923610644">📞 +84 923 610 644</a></li>
+        <li><a href="mailto:tranha1981nd@gmail.com">✉️ tranha1981nd@gmail.com</a></li>
+        <li><a href="#contact">📍 Số 114 Đường Bờ Sông, Xã Bình Minh, Hà Nội</a></li>
+        <li><a href="#">🏢 MST: 0109909611</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2024 Công ty Cổ phần Sản xuất và Thương mại BUMBO (BUMBO.,JSC). Tất cả quyền được bảo lưu.
+  </div>
+</footer>
+
+<script>
+  function submitForm(btn) {
+    const form = btn.closest('.contact-form');
+    const name = form.querySelector('input[type="text"]').value.trim();
+    const phone = form.querySelector('input[type="tel"]').value.trim();
+    if (!name || !phone) {
+      alert('Vui lòng nhập họ tên và số điện thoại.');
+      return;
+    }
+    btn.textContent = '✓ Đã gửi yêu cầu!';
+    btn.style.background = '#27ae60';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Gửi yêu cầu ngay';
+      btn.style.background = '';
+      btn.disabled = false;
+      form.querySelectorAll('input, textarea, select').forEach(el => el.value = '');
+    }, 3000);
+  }
+
+  // Smooth reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.product-card, .why-card, .step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
